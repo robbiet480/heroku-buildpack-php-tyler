@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export NGINX_VERSION="1.3.0"
-export PHP_VERSION="5.4.1"
+export PHP_VERSION="5.4.3"
 export LIBMCRYPT_VERSION="2.5.8"
 
 export EC2_PRIVATE_KEY=~/.ec2/pk.pem
