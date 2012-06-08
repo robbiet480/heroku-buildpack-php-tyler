@@ -41,6 +41,11 @@ http {
       }
     }
 
+    if ($uri = /phpinfo) {
+        rewrite .* /info.php last;
+      }
+    }
+
 
     location ~ \.php$ {
       include /app/vendor/nginx/conf/fastcgi_params;
