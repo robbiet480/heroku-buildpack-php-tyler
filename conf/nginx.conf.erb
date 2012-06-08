@@ -43,9 +43,9 @@ http {
 
 
     location ~ \.php$ {
-      include fastcgi_params;
+      include /app/vendor/nginx/conf/fastcgi_params;
 
-      fastcgi_pass unix:/tmp/php5-fpm.sock;
+      fastcgi_pass unix:/tmp/php-fpm.sock;
       fastcgi_index index.php;
       fastcgi_param SCRIPT_FILENAME /app/deploy/runtime/startup.php;
     }
