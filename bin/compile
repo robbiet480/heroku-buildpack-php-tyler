@@ -71,8 +71,8 @@ if [ ! -d ./vendor/php ]; then
   echo "-----> Bundling PHP v${PHP_VERSION}"
   mkdir -p ./vendor/php
   curl --silent --max-time 60 --location $PHP_URL | tar xz -C ./vendor/php
-  mkdir -p ./vendor/php/ext
-  curl --silent --max-time 60 -o ./vendor/php/ext/mongo.so --location $MONGO_URL 
+  echo "-----> Installing mongo.so"
+  curl --max-time 60 -o ./vendor/php/lib/php/extensions/no-debug-non-zts-20100525/mongo.so --location $MONGO_URL 
 fi
 
 echo "-----> Installing newrelic"
