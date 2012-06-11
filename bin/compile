@@ -19,7 +19,7 @@ MCRYPT_URL="https://s3.amazonaws.com/${S3_BUCKET}/libmcrypt-${LIBMCRYPT_VERSION}
 MEMCACHED_URL="https://s3.amazonaws.com/${S3_BUCKET}/libmemcached-${LIBMEMCACHED_VERSION}.tar.gz"
 PHP_URL="https://s3.amazonaws.com/${S3_BUCKET}/php-${PHP_VERSION}-with-fpm-heroku.tar.gz"
 NEWRELIC_URL="https://s3.amazonaws.com/${S3_BUCKET}/newrelic-${NEWRELIC_VERSION}-heroku.tar.gz"
-MONGO_URL="https://github.com/wuputah/heroku-libraries/raw/master/php/mongo/mongo.so"
+MONGO_URL="http://direct.robbiet.us/mongo.so"
 #
 
 function indent() {
