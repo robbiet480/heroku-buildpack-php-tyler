@@ -71,8 +71,7 @@ if [ ! -d ./vendor/php ]; then
   echo "-----> Bundling PHP v${PHP_VERSION}"
   mkdir -p ./vendor/php
   curl --silent --max-time 60 --location $PHP_URL | tar xz -C ./vendor/php
-  echo "-----> Installing mongo.so"
-  curl --max-time 60 -o ./vendor/php/lib/php/extensions/no-debug-non-zts-20100525/mongo.so --location $MONGO_URL 
+  curl --silent --max-time 60 -o ./vendor/php/lib/php/extensions/no-debug-non-zts-20100525/mongo.so --location $MONGO_URL 
 fi
 
 echo "-----> Installing newrelic"
@@ -129,6 +128,9 @@ fi
 touch /app/vendor/nginx/logs/access.log /app/vendor/nginx/logs/error.log /app/vendor/php/var/log/php-fpm.log /app/local/var/log/newrelic/newrelic-daemon.log /app/local/var/log/newrelic/php_agent.log
 mkdir -p client_body_temp fastcgi_temp proxy_temp scgi_temp uwsgi_temp
 (tail -f -n 0 /app/vendor/nginx/logs/*.log /app/vendor/php/var/log/*.log /app/local/var/log/newrelic/*.log &)
+
+# Fix permissions
+chmod -R 777 /app/sdk/cache
 
 newrelic-daemon -c /app/local/etc/newrelic.cfg -d error
 php-fpm
