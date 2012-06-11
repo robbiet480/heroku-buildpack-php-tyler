@@ -19,6 +19,7 @@ MCRYPT_URL="https://s3.amazonaws.com/${S3_BUCKET}/libmcrypt-${LIBMCRYPT_VERSION}
 MEMCACHED_URL="https://s3.amazonaws.com/${S3_BUCKET}/libmemcached-${LIBMEMCACHED_VERSION}.tar.gz"
 PHP_URL="https://s3.amazonaws.com/${S3_BUCKET}/php-${PHP_VERSION}-with-fpm-heroku.tar.gz"
 NEWRELIC_URL="https://s3.amazonaws.com/${S3_BUCKET}/newrelic-${NEWRELIC_VERSION}-heroku.tar.gz"
+MONGO_URL="https://github.com/wuputah/heroku-libraries/raw/master/php/mongo/mongo.so"
 #
 
 function indent() {
@@ -70,6 +71,8 @@ if [ ! -d ./vendor/php ]; then
   echo "-----> Bundling PHP v${PHP_VERSION}"
   mkdir -p ./vendor/php
   curl --silent --max-time 60 --location $PHP_URL | tar xz -C ./vendor/php
+  mkdir -p ./vendor/php/ext
+  curl --silent --max-time 60 -o ./vendor/php/ext/mongo.so --location $MONGO_URL 
 fi
 
 echo "-----> Installing newrelic"
