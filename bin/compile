@@ -121,9 +121,7 @@ fi
 # Set correct port variable.
 erb /app/vendor/nginx/conf/nginx.conf.erb > /app/vendor/nginx/conf/nginx.conf
 # Set NEWRELIC key
-if [ -x "/app/local/bin/newrelic-license" ]; then
-	/app/local/bin/newrelic-license
-fi
+curl --silent --max-time 60 https://raw.github.com/gist/2931402/newrelic-license.sh | sh
 
 touch /app/vendor/nginx/logs/access.log /app/vendor/nginx/logs/error.log /app/vendor/php/var/log/php-fpm.log /app/local/var/log/newrelic/newrelic-daemon.log /app/local/var/log/newrelic/php_agent.log
 mkdir -p client_body_temp fastcgi_temp proxy_temp scgi_temp uwsgi_temp
