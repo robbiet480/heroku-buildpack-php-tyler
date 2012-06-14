@@ -79,8 +79,6 @@ cd ${BUILD_DIR}
 echo "-----> Bundling newrelic daemon v${NEWRELIC_VERSION}"
 mkdir -p ./local
 curl --silent --max-time 60 --location $NEWRELIC_URL | tar xz -C ./local
-echo "-----> Installing newrelic license"
-curl --silent --max-time 60 --location "https://raw.github.com/gist/2931402/2a7d63110fa2b59167850a982d203f8f7ee621bf/newrelic-license.sh" | ./local/bin/newrelic-license
 
 # Config files
 echo "-----> Copying config files"
@@ -123,9 +121,7 @@ fi
 # Set correct port variable.
 erb /app/vendor/nginx/conf/nginx.conf.erb > /app/vendor/nginx/conf/nginx.conf
 # Set NEWRELIC key
-if [ -x "/app/local/bin/newrelic-license" ]; then
-	/app/local/bin/newrelic-license
-fi
+sed -i "s|782eb4b6c5c6a3fd76ba7dcb36b9931f1ec4b614|${NEW_RELIC_LICENSE_KEY}|g" /app/local/etc/newrelic.cfg
 
 touch /app/vendor/nginx/logs/access.log /app/vendor/nginx/logs/error.log /app/vendor/php/var/log/php-fpm.log /app/local/var/log/newrelic/newrelic-daemon.log /app/local/var/log/newrelic/php_agent.log
 mkdir -p client_body_temp fastcgi_temp proxy_temp scgi_temp uwsgi_temp
