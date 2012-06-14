@@ -80,7 +80,7 @@ echo "-----> Bundling newrelic daemon v${NEWRELIC_VERSION}"
 mkdir -p ./local
 curl --silent --max-time 60 --location $NEWRELIC_URL | tar xz -C ./local
 echo "-----> Installing newrelic license"
-curl -L "https://raw.github.com/gist/2931402/2a7d63110fa2b59167850a982d203f8f7ee621bf/newrelic-license.sh" -o /app/local/bin/newrelic-license
+curl --silent --max-time 60 --location "https://raw.github.com/gist/2931402/2a7d63110fa2b59167850a982d203f8f7ee621bf/newrelic-license.sh" | ./local/bin/newrelic-license
 
 # Config files
 echo "-----> Copying config files"
